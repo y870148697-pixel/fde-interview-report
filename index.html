@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FDE 后台管理平台用户访谈报告</title>
+<style>
+  :root{
+    --ink:#1f2329; --sub:#646a73; --line:#dee0e3; --bg:#f5f6f7;
+    --blue:#2b5aed; --blue-bg:#eef3ff; --amber:#b7791f; --amber-bg:#fdf3e3;
+    --green:#2f7d4f; --green-bg:#ecf6f0; --red:#c0392b; --red-bg:#fbecea;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;padding:32px 24px;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,"PingFang SC","Microsoft YaHei",Segoe UI,sans-serif;font-size:14px;line-height:1.75;}
+  .wrap{max-width:1180px;margin:0 auto;}
+  h1{font-size:25px;margin:0 0 8px;}
+  .meta{color:var(--sub);font-size:13px;margin-bottom:22px;}
+  .note{background:var(--blue-bg);border:1px solid #d6e4ff;border-radius:8px;padding:12px 14px;color:#33415c;font-size:13px;margin-bottom:22px;}
+  h2{font-size:19px;margin:36px 0 14px;padding-left:10px;border-left:4px solid var(--blue);}
+  h3{font-size:15px;margin:20px 0 10px;}
+  h4{font-size:14px;margin:14px 0 8px;color:var(--sub);}
+  table{border-collapse:collapse;width:100%;background:#fff;font-size:13px;margin:10px 0 18px;}
+  th,td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;text-align:left;}
+  th{background:#f0f1f2;font-weight:600;}
+  ul{margin:6px 0;padding-left:20px;} li{margin:4px 0;}
+  .pid{font-weight:600;color:var(--blue);white-space:nowrap;}
+  .pain{color:var(--red);} .need{color:var(--green);}
+  .empty{color:var(--sub);font-style:italic;}
+  .tag{display:inline-block;border-radius:4px;padding:1px 8px;font-size:12px;}
+  .tag-echo{background:var(--blue-bg);color:var(--blue);}
+  .tag-delta{background:var(--green-bg);color:var(--green);}
+  .tag-admin{background:var(--amber-bg);color:var(--amber);}
+  .kf{background:#fff;border:1px solid var(--line);border-left:3px solid var(--blue);border-radius:8px;padding:12px 14px;margin:10px 0;}
+  .kf .kf-t{font-weight:700;margin-bottom:4px;}
+  .journey{display:flex;flex-wrap:wrap;margin:14px 0 18px;}
+  .stage{flex:1 1 150px;min-width:150px;background:#fff;border:1px solid var(--line);padding:10px 12px;}
+  .stage + .stage{border-left:none;}
+  .stage .s-no{font-size:12px;color:var(--blue);font-weight:600;}
+  .stage .s-name{font-weight:600;margin:2px 0;}
+  .stage .s-desc{font-size:12px;color:var(--sub);}
+  .persona{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0;}
+  .kv{display:grid;grid-template-columns:120px 1fr;gap:6px 12px;font-size:13px;}
+  .kv dt{color:var(--sub);} .kv dd{margin:0;}
+  .dual{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:900px){.dual{grid-template-columns:1fr;}}
+  .small{font-size:12px;color:var(--sub);}
+  .legend{font-size:12px;color:var(--sub);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>FDE 后台管理平台用户访谈报告</h1>
+  <div class="meta">样本 3 位 ｜ Echo 1 位、Delta 2 位 ｜ 素材来源：飞书表格《FDE后台管理使用反馈 · 定性访谈内容小结》｜ 结构：执行摘要 → 分画像详述（旅程图 · 痛点 · 需求点）。</div>
+
+  <div class="note">
+    <strong>样本与结论边界：</strong>本轮为小样本定性访谈（n=3），下文结论仅基于本批样本，不代表全量用户比例；标注「待确认 / 待外部用户验证」的条目需补充外部 ISV 样本核实。痛点编号（如 S4-1）与需求点在旅程表中一一对应，便于后期汇总追溯。
+  </div>
+
+  <!-- ================= 执行摘要 ================= -->
+  <h2>一、执行摘要</h2>
+
+  <h3>1.1 访谈基本情况</h3>
+  <table>
+    <thead><tr><th style="width:90px">编号</th><th>受访者 / 账号</th><th>访谈时间</th><th>角色画像</th><th>工作侧重</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="pid">P1</td><td>罗雅晶 / luoyj6</td><td>11.11 14:00</td>
+        <td><span class="tag tag-echo">Echo · 需求 / 业务</span></td>
+        <td>商机承接、需求整理、原型设计（HTML）、拆 BRPR、生成 PRD、排期；更多使用 FDE 乐搭平台，后台主要看项目进展。</td>
+      </tr>
+      <tr>
+        <td class="pid">P2</td><td>杨婷婷 / yangtt9</td><td>11.12 15:00</td>
+        <td><span class="tag tag-delta">Delta · 开发 &amp; 项目管理</span></td>
+        <td>项管约 60%：需求接收、工时 / 预算填报、BRPR 同步、版本冲刺管理、缺陷跟进与发版；开发约 40%：代码编写、微服务配置、环境预制。</td>
+      </tr>
+      <tr>
+        <td class="pid">P3</td><td>管菲菲 / guanff1</td><td>11.18 15:00</td>
+        <td><span class="tag tag-delta">Delta · 研发</span> + <span class="tag tag-admin">超级管理员 / 系统维护</span></td>
+        <td>研发约 80%：代码开发、自测、缺陷修复、发布申请；项管约 20%：冲刺任务、测试进度、风险预警、工时、人均速率与缺陷质量；并负责租户与组织权限配置。</td>
+      </tr>
+    </tbody>
+  </table>
+  <ul>
+    <li><strong>访谈目的：</strong>梳理不同角色在 FDE 后台管理平台及配套 VS Code 插件上的真实使用流程与核心场景，识别首次引导、项目管理、研发协作、发版部署、组织管理各环节痛点，收集 AI 助手与功能方向期待。</li>
+    <li><strong>覆盖环节：</strong>账号开通 → 首次进入与 OOBE 引导 → 日常项目管理 → 研发协作（IDE / 插件）→ 发版部署 → 组织与系统管理。</li>
+    <li><strong>方法：</strong>一对一定性访谈；本报告按 Echo、Delta 两类角色归并呈现。</li>
+  </ul>
+
+  <h3>1.2 核心发现</h3>
+  <p class="legend">本次调研核心是解决「使用引导」问题，以下发现均围绕首次上手引导的现状缺口与优化方向归纳；深度使用阶段的项目管理、产物流转、通知发版及 AI 定位等痛点，详见第二、三章画像详述。</p>
+
+  <div class="kf">
+    <div class="kf-t">方向 1 ｜ 平台内提供完整入门引导，承接新用户首次上手</div>
+    <div>宜在平台内搭建从插件下载安装、登录到首个项目上手的完整路径，明确插件入口与适用范围，讲清首次关联后台、环境与仓库配置步骤，使用户不必依赖线下培训或既有文档即可完成首次上手。（依据 S2-1、S2-2，P2；P3 同样以培训 / 文档为主要使用方式）</div>
+  </div>
+  <div class="kf">
+    <div class="kf-t">方向 2 ｜ 按角色拆分独立引导路径，讲清各角色高频场景与功能点</div>
+    <div>可为 Echo、Delta 分别设计引导路径，不交叉展示无关流程；Echo 路径完整串联需求整理、原型设计、拆 BRD/PRD、排期等场景，Delta 路径覆盖项管与研发协作链路，各讲各角色的关键功能点。（依据 P1）</div>
+  </div>
+  <div class="kf">
+    <div class="kf-t">方向 3 ｜ 按内外部用户差异化配置引导，外部用户跳过内部资源申请</div>
+    <div>可先识别用户类型：内部交付团队保留微服务、仓库等环境申请与配置步骤；外部 ISV 用户跳过内部资源申请，仅保留其必需配置。（S2-2 适用性待确认；对应优化方向 A2-c）</div>
+  </div>
+  <div class="kf">
+    <div class="kf-t">方向 4 ｜ 采用低风险演示形式，增强引导可读性与焦点聚焦</div>
+    <div>宜以文档 / 视频 / 模拟演示替代在真实环境操作生产数据；增强引导卡片与背景的视觉对比，使焦点区域易于识别。（依据 S2-3、S2-4，P3；形式偏好 P2）</div>
+  </div>
+
+  <h4>分角色引导重点场景与功能点</h4>
+  <table>
+    <thead>
+      <tr><th style="width:120px">角色</th><th>引导重点场景</th><th>引导应覆盖的重点功能点</th><th>现状缺口（呼应痛点）</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="tag tag-echo">Echo</span><br>需求 / 业务（P1）</td>
+        <td>商机承接 → 需求整理 → HTML 原型设计 → 拆 BRPR → 生成 PRD → 排期；在后台查看项目进展状态。</td>
+        <td>
+          <ul>
+            <li>独立的 Echo 引导路径，不混入 Delta 开发流程；</li>
+            <li>完整串联需求整理、原型设计、拆 BRD/PRD、排期全场景；</li>
+            <li>引导中演示如何调用智能体直接生成原型 / PRD；</li>
+            <li>说明对话产物（验收用例、原型、PRD）如何沉淀与同步；</li>
+            <li>指引从 FDE 对话页进入后台查看进展的入口；</li>
+            <li>说明智能体如何承接当前项目已有产物与进度上下文。</li>
+          </ul>
+        </td>
+        <td class="pain">两类角色流程混杂、Echo 场景覆盖不全；对话页到后台跳转不便（S1-1）。</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-delta">Delta</span><br>开发 / 项管 / 管理（P2、P3）</td>
+        <td>插件下载安装与登录 → 选 / 建项目 → 克隆代码 → 环境与仓库配置；冲刺看板 / 任务 / 缺陷 / 工时与指标监控；IDE 写 Spec/Prompt → 生成代码 → 自测 → 同步用例 → 关联版本；发版申请与审批；管理员配置租户 / 部门 / 成员 / 审核流。</td>
+        <td>
+          <ul>
+            <li>插件下载入口、适用范围与安装使用指引；</li>
+            <li>首次关联后台、环境与仓库配置指引，并按内 / 外部用户区分（外部 ISV 跳过微服务等内部资源申请）；</li>
+            <li>后台项管模块入口与操作：冲刺看板、缺陷、工时 / 预算、效能指标；</li>
+            <li>IDE 协作链路：Spec/Prompt、生成代码、自测、同步测试用例、关联版本 / 冲刺；</li>
+            <li>发版流程与审批节点提示；</li>
+            <li>管理员侧：租户 / 部门 / 成员 / 审核流的配置路径与概念边界；</li>
+            <li>以文档 / 视频 / 模拟演示呈现，增强卡片视觉焦点，避免在真实环境操作生产数据。</li>
+          </ul>
+        </td>
+        <td class="pain">无插件入口、首次关联配置复杂（S2-1 / 2-2）；卡片焦点不清、生产数据实操风险、审批提示缺失（S2-3 / 2-4 / 2-5）。</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="legend">引导共性优化方向：① 按「角色 × 内外部用户」分层；② 低风险演示形式 + 清晰视觉焦点 + 明确审批提示；③ 引导覆盖需求到部署完整闭环，补发版环节演示。</p>
+
+  <!-- ================= 画像 Echo ================= -->
+  <h2>二、用户画像（Echo · 需求 / 业务）</h2>
+
+  <div class="persona">
+    <div class="kv">
+      <dt>对应受访者</dt><dd>P1 罗雅晶（luoyj6）</dd>
+      <dt>角色定位</dt><dd>Echo（需求 / 业务），更多使用 FDE 乐搭平台，管理后台主要用于查看项目进展状态。</dd>
+      <dt>核心职责</dt><dd>商机承接、需求整理、原型设计（HTML）、拆分 BRPR、生成 PRD、制定计划排期。</dd>
+      <dt>目标动机</dt><dd>把客户商机转成清晰可落地的需求与原型；让前期成果顺畅交到开发侧；及时掌握项目推进状态与潜在风险。</dd>
+      <dt>态度倾向</dt><dd>对 AI 能力期待较高，希望平台贯穿需求到交付的完整链路。</dd>
+    </div>
+  </div>
+
+  <h3>2.1 旅程图</h3>
+  <div class="journey">
+    <div class="stage"><div class="s-no">E1</div><div class="s-name">账号申请与进入</div><div class="s-desc">FDE 申请账号 → 管理员加后台权限 → 手动输网址进入登录</div></div>
+    <div class="stage"><div class="s-no">E2</div><div class="s-name">需求梳理与原型产出</div><div class="s-desc">乐搭平台整理需求、设计 HTML 原型、拆 BRPR、生成 PRD、排期</div></div>
+    <div class="stage"><div class="s-no">E3</div><div class="s-name">成果沉淀与流转</div><div class="s-desc">对话产出验收用例、原型、PRD，向开发侧承接</div></div>
+    <div class="stage"><div class="s-no">E4</div><div class="s-name">进展查看</div><div class="s-desc">进入后台查看项目进展状态与风险</div></div>
+  </div>
+  <p class="legend">说明：Echo 深度使用流程在本轮访谈中未完全展开，下表痛点与需求点基于已记录的场景与反馈整理。</p>
+
+  <h3>2.2 痛点与对应需求点</h3>
+  <table>
+    <thead>
+      <tr><th style="width:120px">旅程阶段</th><th>痛点（编号）</th><th>对应需求点</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>E1 账号申请与进入</td>
+        <td class="pain">S1-1 想看进展时无法从 FDE 对话页面直接跳转项目管理后台，需手动输入网址切换。</td>
+        <td class="need">在对话页与后台之间提供直接入口 / 跳转链接，减少手动切换。</td>
+      </tr>
+      <tr>
+        <td>E3 成果沉淀与流转</td>
+        <td class="pain">S4-1 多项目并行时，智能体无法识别当前项目的文件资料与进度状态（如已生成原型 / PRD），无法基于上下文连续执行任务。</td>
+        <td class="need">智能体按项目沉淀并读取上下文（文件、进度、前期产物），支持连续承接。</td>
+      </tr>
+      <tr>
+        <td>E3 成果沉淀与流转</td>
+        <td class="pain">S4-2 Echo 生成的客户验收用例仅存在于对话中，未自动同步后台「测试」模块；后台现有用例仅 Delta 代码测试，两类用例未关联。</td>
+        <td class="need">对话生成的验收用例自动同步并关联后台测试模块，打通 Echo / Delta 两类用例。</td>
+      </tr>
+      <tr>
+        <td>E3 成果沉淀与流转</td>
+        <td class="pain">S4-3 原型、PRD 等前期产物未自动同步 VS Code 插件，开发需手动保存重传，无法直接承接前半段成果。</td>
+        <td class="need">插件打通前期项目文件（原型、PRD 等），保障需求到开发的产物衔接。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>2.3 补充期待（横切需求点）</h3>
+  <ul>
+    <li><strong>完整智能体能力：</strong>支持文件处理、文件生成与技能使用，可在引导过程中直接生成原型或 PRD，实现流程顺畅化。</li>
+    <li><strong>项目风险主动分析：</strong>通过对话查询项目进展，主动分析异常状态、人员卡点及潜在风险，识别推进困难的项目与瓶颈人员。</li>
+    <li><strong>上下文共享与沉淀：</strong>将对话中的关键信息（设计规范、配色原则、提示词逻辑）沉淀为项目资产，供团队成员查看继承，避免隐性知识丢失。</li>
+    <li><strong>前置业务阶段追踪：</strong>补全商机、POC、意向等前置业务阶段的状态管理，串联前后端完整链路（当前仅覆盖开发后阶段如 PR 完成率）。</li>
+    <li><strong>可视化项目大屏：</strong>区分 Owner 创建与成员参与的项目，展示状态（开发中 / 已结项 / 停滞）；点击查看进度百分比、甘特图、人员负责内容与卡点。</li>
+  </ul>
+
+  <!-- ================= 画像 Delta ================= -->
+  <h2>三、用户画像（Delta · 开发 / 项目管理 / 系统管理）</h2>
+
+  <div class="dual">
+    <div class="persona">
+      <div class="kv">
+        <dt>对应受访者</dt><dd>P2 杨婷婷（yangtt9）</dd>
+        <dt>角色定位</dt><dd>Delta，项管约 60%、开发约 40%，高频使用平台做项目管理，会收藏常做项目。</dd>
+        <dt>目标动机</dt><dd>多项目进度可视、风险可控、发版顺畅；减少重复操作与信息搬运，把管理动作做顺手。</dd>
+        <dt>态度倾向</dt><dd>务实、重效率与工具顺手度；认为 AI 应放在 IDE 插件端，后台做好项目管理本职即可。</dd>
+      </div>
+    </div>
+    <div class="persona">
+      <div class="kv">
+        <dt>对应受访者</dt><dd>P3 管菲菲（guanff1）</dd>
+        <dt>角色定位</dt><dd>Delta 研发约 80%、项管约 20%，同时为系统开发人员与超级管理员，负责组织与系统维护。</dd>
+        <dt>目标动机</dt><dd>高质量交付版本、把控质量指标；组织与权限配置高效、边界清晰；让系统真正驱动协作流程而非只留记录。</dd>
+        <dt>态度倾向</dt><dd>懂底层、重安全与权限边界，务实谨慎；认可现有 IDE 内 AI，后台 AI 定位辅助而非替代。</dd>
+      </div>
+    </div>
+  </div>
+
+  <h3>3.1 旅程图</h3>
+  <div class="journey">
+    <div class="stage"><div class="s-no">D1</div><div class="s-name">首次接入与引导</div><div class="s-desc">插件下载安装 / 培训文档 → 登录 → 选 / 建项目 → 克隆代码 → 环境与仓库配置</div></div>
+    <div class="stage"><div class="s-no">D2</div><div class="s-name">日常项目管理</div><div class="s-desc">收藏项目 → 冲刺看板 / 个人任务 → 风险识别、缺陷回顾 → 工时预算 → 指标监控</div></div>
+    <div class="stage"><div class="s-no">D3</div><div class="s-name">研发协作</div><div class="s-desc">需求讲解 → 写 Spec/Prompt → 生成代码 → 自测 → 同步用例 → 关联版本 / 冲刺</div></div>
+    <div class="stage"><div class="s-no">D4</div><div class="s-name">发版与部署</div><div class="s-desc">线下例会共识 → 线上发版申请 → 邮件审批 → 部署 → 验证日志</div></div>
+    <div class="stage"><div class="s-no">D5</div><div class="s-name">组织与系统管理</div><div class="s-desc">创建租户 → 邀请链接 → 配置部门 / 成员 / 审核流（P3）</div></div>
+  </div>
+
+  <h3>3.2 痛点与对应需求点</h3>
+  <table>
+    <thead>
+      <tr><th style="width:120px">旅程阶段</th><th>痛点（编号 · 提出人）</th><th>对应需求点</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>D1 首次接入与引导</td>
+        <td class="pain">S2-1 平台无插件引导入口，缺下载引导与适用范围说明，用户不知如何下载 / 安装 / 使用，依赖线下培训。（P2）</td>
+        <td class="need">补充插件下载入口、适用范围与使用说明引导。</td>
+      </tr>
+      <tr>
+        <td>D1 首次接入与引导</td>
+        <td class="pain">S2-2 插件与后台首次关联配置复杂，需在微服务环节配置 SGD 仓库地址才能打通（是否仅内部用户如此，待确认）。（P2）</td>
+        <td class="need">按内 / 外部用户区分环境配置引导，简化首次关联步骤。</td>
+      </tr>
+      <tr>
+        <td>D1 首次接入与引导</td>
+        <td class="pain">S2-3 VS Code 引导卡片颜色与背景融合，难以第一时间识别焦点区域。（P3）</td>
+        <td class="need">增强引导卡片对比度或调整呈现方式，聚焦注意力。</td>
+      </tr>
+      <tr>
+        <td>D1 首次接入与引导</td>
+        <td class="pain">S2-4 不宜在真实插件环境用生产数据做引导演示，担心误操作或数据泄露。（P3）</td>
+        <td class="need">实操型引导改为模拟演示 / 视频，避免在真实 IDE 操作生产数据。</td>
+      </tr>
+      <tr>
+        <td>D1 首次接入与引导</td>
+        <td class="pain">S2-5 引导涉及微服务创建时未明确提示需审批，导致预期不符（外部用户是否需要该审批，待确认）。（P3）</td>
+        <td class="need">引导中明确标注审批节点及适用用户范围。</td>
+      </tr>
+      <tr>
+        <td>D2 日常项目管理</td>
+        <td class="pain">S3-1 多项目切换时页面刷新、无面包屑 / 固定导航，原状态丢失，无法同时对比多项目。（P2）</td>
+        <td class="need">提供多项目总览入口、固定导航 / 面包屑，保留切换状态，支持并行对比。</td>
+      </tr>
+      <tr>
+        <td>D2 日常项目管理</td>
+        <td class="pain">S3-2 冲刺看板不支持搜索 PR、不支持导出；新增 PR 无标识，测试人员难以识别变更范围。（P2）</td>
+        <td class="need">看板支持 PR 搜索 / 导出，新增 PR 给出明显标识。</td>
+      </tr>
+      <tr>
+        <td>D2 日常项目管理</td>
+        <td class="pain">S3-3 「暂不修复」缺陷无法直接转为下期 PR；关联 PR 仅显示 ID 编号，不直观、易跳转混乱。（P2）</td>
+        <td class="need">缺陷可转下期 PR；关联 PR 展示可读标题并支持直达跳转。</td>
+      </tr>
+      <tr>
+        <td>D2 日常项目管理</td>
+        <td class="pain">S3-4 工时填报区域拖拽失效；配置项技术信息在概览页重复展示，显得冗余。（P2）</td>
+        <td class="need">修复工时拖拽；概览页精简重复技术信息。</td>
+      </tr>
+      <tr>
+        <td>D2 / D5 项目与组织管理</td>
+        <td class="pain">S3-5 租户管理页面过重、层级多信息杂，「项目审核流」置于「部门」设置下，概念混淆，不同角色认知不一致。（P3）</td>
+        <td class="need">简化管理界面，厘清「部门管理」与「项目审核流」边界（界面简化结论需外部用户另行验证）。</td>
+      </tr>
+      <tr>
+        <td>D2 / D5 项目与组织管理</td>
+        <td class="pain">S3-6 部门和成员仅支持逐个创建，缺批量操作，组织架构调整效率低。（P3）</td>
+        <td class="need">支持部门 / 成员批量创建 / 导入，提升组织初始化效率。</td>
+      </tr>
+      <tr>
+        <td>D3 研发协作</td>
+        <td class="pain">S4-4 PR 描述希望支持粘贴 UI 图 / 原型图作为 AI 生成参考，纯文字不够直观。（P2）</td>
+        <td class="need">PR 描述支持附图 / 原型参考。</td>
+      </tr>
+      <tr>
+        <td>D3 研发协作</td>
+        <td class="pain">S4-5 插件内 Skill 执行步骤过多，影响生成效果。（P2）</td>
+        <td class="need">精简插件 Skill 执行步骤，提升生成效果。</td>
+      </tr>
+      <tr>
+        <td>D4 发版与部署</td>
+        <td class="pain">S5-1 提交发布申请后无法撤销或修改，只能新建版本重新提单。（P2）</td>
+        <td class="need">发布申请在限定环节内支持撤回 / 修改。</td>
+      </tr>
+      <tr>
+        <td>D4 发版与部署</td>
+        <td class="pain">S5-2 发版关键决策实际依赖线下例会，系统更多是记录而非驱动协作。（P3）</td>
+        <td class="need">强化系统对协作流程的驱动与节点提醒，将线下共识沉淀到线上流程。</td>
+      </tr>
+      <tr>
+        <td>D5 组织与系统管理</td>
+        <td class="pain">S1-2 账号审批等关键通知仅依赖邮件，系统内「待办」无实时消息推送，需主动查看。（P3）</td>
+        <td class="need">系统内增加实时消息提醒，减少对邮件的单一依赖，提升审批响应时效。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>3.3 AI 与功能期待</h3>
+  <table>
+    <thead><tr><th style="width:90px">受访者</th><th>AI 助手期待</th><th>其他功能期待</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="pid">P2</td>
+        <td>暂无后台侧期待；认为 AI 应在 IDE 插件端与编译器 / Copilot 绑定，后台不承载开发场景；项目管理侧现有 BR / PR / 测试用例 / 任务经插件同步已够用。</td>
+        <td class="empty">无。</td>
+      </tr>
+      <tr>
+        <td class="pid">P3</td>
+        <td>认可现有 AI（生成 Spec/Prompt、估算故事点、Release Note）已融入高频工作流；编码辅助首选本地 IDE，后台 AI 定位辅助而非替代。</td>
+        <td>简化租户管理界面、厘清部门管理与项目审核流边界；支持部门 / 成员批量创建 / 导入；完善站内实时通知。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="small" style="margin-top:22px">注：本报告全部内容来自访谈记录表；痛点编号与早期小结、汇总报告及映射表保持一致，可逐条回溯。</p>
+
+</div>
+</body>
+</html>
